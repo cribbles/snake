@@ -14,13 +14,17 @@
   Snake.prototype.move = function() {
     var nextPos = SnakeGame.Util.add(this.currentPos(), this.dir);
 
-    this.segments.push(nextPos);
-
-    if (!SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
-      this.segments.shift();
+    if (!this.safeMove(nextPos)) {
+      this.board.isOver = true;
     } else {
-      this.board.placeApple();
-    }
+      this.segments.push(nextPos);
+
+      if (!SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
+        this.segments.shift();
+      } else {
+        this.board.placeApple();
+      };
+    };
   };
 
   Snake.prototype.changeDir = function(dir) {
@@ -35,5 +39,10 @@
         this.dir = "E";
       };
     };
+  };
+
+  Snake.prototype.safeMove = function(pos) {
+    return this.board.inRange(pos) &&
+      !SnakeGame.Util.inSegments(this.segments, pos);
   };
 })();

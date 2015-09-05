@@ -7,6 +7,7 @@
     this.height = options.height || Board.HEIGHT;
     this.width = options.width || Board.WIDTH;
     this.snake = options.snake || new SnakeGame.Snake(this);
+    this.isOver = false;
 
     this.placeApple();
   };
@@ -58,5 +59,10 @@
     return board.map(function (row) {
       return row.join("");
     }).join("\n");
+  };
+
+  Board.prototype.inRange = function (pos) {
+    return (pos[0] >= 0 && pos[0] < this.height) &&
+           (pos[1] >= 0 && pos[1] < this.width);
   };
 })();

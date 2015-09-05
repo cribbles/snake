@@ -16,10 +16,12 @@
       this.snake.move();
       this.$el.text(board);
 
-      setTimeout(
-        render.bind(this),
-        1000 / pace
-      );
+      if (!this.board.isOver) {
+        setTimeout(
+          render.bind(this),
+          1000 / pace
+        );
+      };
     };
 
     setTimeout(render.bind(this), 1000 / 10);
