@@ -22,4 +22,18 @@
       this.board.placeApple();
     }
   };
+
+  Snake.prototype.changeDir = function(dir) {
+    if (window.Snake.Util.DIRECTIONS[dir]) {
+      if (dir == "N" && this.dir != "S") {
+        this.dir = "N";
+      } else if (dir == "S" && this.dir != "N") {
+        this.dir = "S";
+      } else if (dir == "W" && this.dir != "E") {
+        this.dir = "W";
+      } else if (dir == "E" && this.dir != "W") {
+        this.dir = "E";
+      };
+    };
+  };
 })();

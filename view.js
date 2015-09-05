@@ -30,13 +30,13 @@
 
     $("body").keydown(function (e) {
       if (e.keyCode == 38) {
-        snake.dir = "N";
+        snake.changeDir("N");
       } else if (e.keyCode == 39) {
-        snake.dir = "E";
+        snake.changeDir("E");
       } else if (e.keyCode == 40) {
-        snake.dir = "S";
+        snake.changeDir("S");
       } else if (e.keyCode == 37) {
-        snake.dir = "W";
+        snake.changeDir("W");
       };
     });
   };
