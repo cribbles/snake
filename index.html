@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Snake</title>
+    <link rel="stylesheet" href="./snake.css" type="text/css">
     <script src="./jquery-2.1.4.js"></script>
     <script src="./util.js"></script>
     <script src="./snake.js"></script>
@@ -9,9 +10,10 @@
     <script src="./view.js"></script>
   </head>
   <body>
+    <h1 class="snake-header">Snake!</h1>
     <div class="snake">
       <pre class="snake-game"></pre>
-      <pre class="snake-score"></pre>
+      <h2 class="snake-score"></h2>
     </div>
     <script>
       var $el = $(".snake");

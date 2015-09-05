@@ -1,0 +1,31 @@
+body, html, div {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  font: inherit;
+  text-align: center;
+  text-decoration: inherit;
+  background: transparent;
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+}
+
+.snake-header {
+  font-size: 56px;
+  margin: 30px auto;
+}
+
+.snake > h2 {
+  font-size: 24px;
+  margin: 20px auto;
+}
+
+.snake > pre {
+  font-size: 14px;
+  font-family: monospace;
+  margin: 0 auto;
+}
