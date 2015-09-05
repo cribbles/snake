@@ -8,6 +8,7 @@
     this.width = options.width || Board.WIDTH;
     this.snake = options.snake || new SnakeGame.Snake(this);
     this.isOver = false;
+    this.score = 0;
 
     this.placeApple();
   };
@@ -65,4 +66,8 @@
     return (pos[0] >= 0 && pos[0] < this.height) &&
            (pos[1] >= 0 && pos[1] < this.width);
   };
+
+  Board.prototype.incrementScore = function () {
+    this.score += this.snake.segments.length * 5;
+  }
 })();

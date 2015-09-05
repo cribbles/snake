@@ -13,14 +13,14 @@
     var render = function () {
       var pace = (7 + this.snake.segments.length);
       var board = this.board.render();
+      var score = this.board.score
+
       this.snake.move();
-      this.$el.text(board);
+      this.$el.find(".snake-game").text(board);
+      this.$el.find(".snake-score").text("Score: " + score);
 
       if (!this.board.isOver) {
-        setTimeout(
-          render.bind(this),
-          1000 / pace
-        );
+        setTimeout(render.bind(this), 1000 / pace);
       };
     };
 

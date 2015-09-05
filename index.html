@@ -9,7 +9,10 @@
     <script src="./view.js"></script>
   </head>
   <body>
-    <pre class="snake"></pre>
+    <div class="snake">
+      <pre class="snake-game"></pre>
+      <pre class="snake-score"></pre>
+    </div>
     <script>
       var $el = $(".snake");
       var view = new SnakeGame.View($el);

@@ -22,6 +22,7 @@
       if (!SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
         this.segments.shift();
       } else {
+        this.board.incrementScore();
         this.board.placeApple();
       };
     };
