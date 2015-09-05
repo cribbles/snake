@@ -1,7 +1,7 @@
 (function () {
-  window.Snake = window.Snake || {};
+  window.SnakeGame = window.SnakeGame || {};
 
-  var Snake = window.Snake.Snake = function (board) {
+  var Snake = SnakeGame.Snake = function (board) {
     this.dir = "S";
     this.segments = [[4, 4], [4, 5], [5, 5]];
     this.board = board;
@@ -12,11 +12,11 @@
   };
 
   Snake.prototype.move = function() {
-    var nextPos = window.Snake.Util.add(this.currentPos(), this.dir);
+    var nextPos = SnakeGame.Util.add(this.currentPos(), this.dir);
 
     this.segments.push(nextPos);
 
-    if (!window.Snake.Util.samePos(nextPos, this.board.applePos)) {
+    if (!SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
       this.segments.shift();
     } else {
       this.board.placeApple();
@@ -24,7 +24,7 @@
   };
 
   Snake.prototype.changeDir = function(dir) {
-    if (window.Snake.Util.DIRECTIONS[dir]) {
+    if (SnakeGame.Util.DIRECTIONS[dir]) {
       if (dir == "N" && this.dir != "S") {
         this.dir = "N";
       } else if (dir == "S" && this.dir != "N") {

@@ -1,9 +1,9 @@
 (function () {
-  window.Snake = window.Snake || {};
+  window.SnakeGame = window.SnakeGame || {};
 
-  var View = Snake.View = function($el, options) {
+  var View = SnakeGame.View = function($el, options) {
     this.$el = $el;
-    this.board = new Snake.Board(options);
+    this.board = new SnakeGame.Board(options);
     this.snake = this.board.snake;
 
     this.bindKeyHandlers();

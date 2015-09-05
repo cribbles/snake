@@ -1,12 +1,12 @@
 (function () {
-  window.Snake = window.Snake || {};
+  window.SnakeGame = window.SnakeGame || {};
 
-  var Board = Snake.Board = function (options) {
+  var Board = SnakeGame.Board = function (options) {
     options = options || {};
 
     this.height = options.height || Board.HEIGHT;
     this.width = options.width || Board.WIDTH;
-    this.snake = options.snake || new Snake.Snake(this);
+    this.snake = options.snake || new SnakeGame.Snake(this);
 
     this.placeApple();
   };
@@ -45,9 +45,9 @@
       for (col = 0; col < this.width; col++) {
         var pos = [row, col];
 
-        if (Snake.Util.inSegments(this.snake.segments, pos)) {
+        if (SnakeGame.Util.inSegments(this.snake.segments, pos)) {
           board[row].push("S");
-        } else if (Snake.Util.samePos(this.applePos, pos)) {
+        } else if (SnakeGame.Util.samePos(this.applePos, pos)) {
           board[row].push("A");
         } else {
           board[row].push(".");

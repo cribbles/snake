@@ -1,7 +1,7 @@
 (function () {
-  window.Snake = window.Snake || {};
+  window.SnakeGame = window.SnakeGame || {};
 
-  var Util = Snake.Util = function () { };
+  var Util = SnakeGame.Util = function () { };
 
   Util.DIRECTIONS = {
     "N": [-1, 0],
