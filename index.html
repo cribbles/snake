@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snake</title>
+    <script src="./jquery-2.1.4.js"></script>
+    <script src="./util.js"></script>
+    <script src="./snake.js"></script>
+    <script src="./board.js"></script>
+    <script src="./view.js"></script>
+  </head>
+  <body>
+    <pre class="snake"></pre>
+    <script>
+      var $el = $(".snake");
+      var view = new Snake.View($el);
+      view.start();
+    </script>
+  </body>
+</html>
