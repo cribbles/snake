@@ -1,8 +1,8 @@
 (function () {
   window.SnakeGame = window.SnakeGame || {};
 
-  var View = SnakeGame.View = function($el, options) {
-    this.$el = $el;
+  var View = SnakeGame.View = function(el, options) {
+    this.$el = $(el);
     this.board = new SnakeGame.Board(options);
     this.snake = this.board.snake;
 
@@ -12,11 +12,11 @@
   View.prototype.start = function () {
     var render = function () {
       var pace = (7 + this.snake.segments.length);
-      var board = this.board.render();
       var score = this.board.score
 
       this.snake.move();
-      this.$el.find(".snake-game").text(board);
+      this.$el.find(".snake-game").empty();
+      this.renderBoard();
       this.$el.find(".snake-score").text("Score: " + score);
 
       if (!this.board.isOver) {
@@ -25,6 +25,17 @@
     };
 
     setTimeout(render.bind(this), 1000 / 10);
+  };
+
+  View.prototype.renderBoard = function() {
+    var board = this.board.render();
+    var $board = this.$el.find(".snake-game");
+    console.log(board);
+    console.log($board);
+
+    board.forEach(function (row) {
+      $board.append(row);
+    });
   };
 
   View.prototype.bindKeyHandlers = function () {

@@ -42,24 +42,23 @@
     var board = [];
 
     for (row = 0; row < this.height; row++) {
-      board[row] = [];
+      board[row] = $("<ul>").addClass("snake-row").addClass("group");
 
       for (col = 0; col < this.width; col++) {
         var pos = [row, col];
+        var $li = $("<li>")
 
         if (SnakeGame.Util.inSegments(this.snake.segments, pos)) {
-          board[row].push("S");
+          board[row].append($li.addClass("snake"));
         } else if (SnakeGame.Util.samePos(this.applePos, pos)) {
-          board[row].push("A");
+          board[row].append($li.addClass("apple"));
         } else {
-          board[row].push(".");
+          board[row].append($li);
         };
       };
     };
 
-    return board.map(function (row) {
-      return row.join("");
-    }).join("\n");
+    return board;
   };
 
   Board.prototype.inRange = function (pos) {

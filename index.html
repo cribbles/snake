@@ -11,13 +11,13 @@
   </head>
   <body>
     <h1 class="snake-header">Snake!</h1>
-    <div class="snake">
-      <pre class="snake-game"></pre>
+    <div class="snake-figure" id="snake">
+      <div class="snake-game"></div>
       <h2 class="snake-score"></h2>
     </div>
     <script>
-      var $el = $(".snake");
-      var view = new SnakeGame.View($el);
+      var el = document.getElementById("snake");
+      var view = new SnakeGame.View(el);
       view.start();
     </script>
   </body>
