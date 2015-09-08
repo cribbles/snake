@@ -45,16 +45,10 @@
       board[row] = $("<ul>").addClass("snake-row").addClass("group");
 
       for (col = 0; col < this.width; col++) {
-        var pos = [row, col];
-        var $li = $("<li>")
+        var pos = row + "-" + col;
+        var $li = $("<li>").attr("id", pos);
 
-        if (SnakeGame.Util.inSegments(this.snake.segments, pos)) {
-          board[row].append($li.addClass("snake"));
-        } else if (SnakeGame.Util.samePos(this.applePos, pos)) {
-          board[row].append($li.addClass("apple"));
-        } else {
-          board[row].append($li);
-        };
+        board[row].append($li);
       };
     };
 

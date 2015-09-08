@@ -3,40 +3,57 @@
 
   var View = SnakeGame.View = function(el, options) {
     this.$el = $(el);
+    this.$board = this.$el.find(".snake-game");
     this.board = new SnakeGame.Board(options);
     this.snake = this.board.snake;
 
     this.bindKeyHandlers();
-  };
+  }
 
   View.prototype.start = function () {
+    this.renderBoard();
+
     var render = function () {
       var pace = (7 + this.snake.segments.length);
       var score = this.board.score
 
       this.snake.move();
-      this.$el.find(".snake-game").empty();
-      this.renderBoard();
+      this.renderSnake();
+      this.renderApple();
       this.$el.find(".snake-score").text("Score: " + score);
 
       if (!this.board.isOver) {
         setTimeout(render.bind(this), 1000 / pace);
-      };
-    };
-
+      }
+    }
     setTimeout(render.bind(this), 1000 / 10);
-  };
+  }
 
-  View.prototype.renderBoard = function() {
+  View.prototype.renderBoard = function () {
     var board = this.board.render();
-    var $board = this.$el.find(".snake-game");
-    console.log(board);
-    console.log($board);
 
     board.forEach(function (row) {
-      $board.append(row);
-    });
-  };
+      this.$board.append(row);
+    }, this);
+  }
+
+  View.prototype.renderSnake = function () {
+    this.$board.find("li").removeClass("snake");
+
+    this.snake.segments.forEach(function (pos) {
+      var id = "#" + pos[0] + "-" + pos[1];
+
+      this.$board.find(id).addClass("snake");
+    }, this);
+  }
+
+  View.prototype.renderApple = function () {
+    this.$board.find("li").removeClass("apple");
+
+    var applePos = this.board.applePos;
+    var id = "#" + applePos[0] + "-" + applePos[1];
+    this.$board.find(id).addClass("apple");
+  }
 
   View.prototype.bindKeyHandlers = function () {
     var snake = this.snake;
@@ -50,7 +67,7 @@
         snake.changeDir("S");
       } else if (e.keyCode == 37) {
         snake.changeDir("W");
-      };
+      }
     });
-  };
+  }
 })();
