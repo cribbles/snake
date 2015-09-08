@@ -5,11 +5,11 @@
     this.dir = "S";
     this.segments = [[4, 4], [4, 5], [5, 5]];
     this.board = board;
-  };
+  }
 
   Snake.prototype.currentPos = function () {
     return this.segments[(this.segments.length - 1)];
-  };
+  }
 
   Snake.prototype.move = function() {
     var nextPos = SnakeGame.Util.add(this.currentPos(), this.dir);
@@ -24,9 +24,9 @@
       } else {
         this.board.incrementScore();
         this.board.placeApple();
-      };
-    };
-  };
+      }
+    }
+  }
 
   Snake.prototype.changeDir = function(dir) {
     if (SnakeGame.Util.DIRECTIONS[dir]) {
@@ -38,12 +38,12 @@
         this.dir = "W";
       } else if (dir == "E" && this.dir != "W") {
         this.dir = "E";
-      };
-    };
-  };
+      }
+    }
+  }
 
   Snake.prototype.safeMove = function(pos) {
     return this.board.inRange(pos) &&
       !SnakeGame.Util.inSegments(this.segments, pos);
-  };
+  }
 })();
