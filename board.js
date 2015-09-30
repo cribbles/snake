@@ -11,7 +11,7 @@
     this.score = 0;
 
     this.placeApple();
-  }
+  };
 
   Board.HEIGHT = 20;
   Board.WIDTH = 40;
@@ -20,7 +20,7 @@
     var emptySpaces = this.emptySpaces();
 
     this.applePos = emptySpaces[Math.floor(Math.random() * emptySpaces.length)];
-  }
+  };
 
   Board.prototype.emptySpaces = function () {
     var emptySpaces = [];
@@ -29,7 +29,7 @@
       for (col = 0; col < this.width; col++) {
         var pos = [row, col];
 
-        if (this.applePos !== pos && this.snake.segments.indexOf(pos) === -1) {
+        if (this.applePos !== pos && !this.snake.hasSegment(pos)) {
           emptySpaces.push([row, col]);
         }
       }

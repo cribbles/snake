@@ -11,6 +11,10 @@
     return this.segments[(this.segments.length - 1)];
   }
 
+  Snake.prototype.hasSegment = function (pos) {
+    return this.segments.indexOf(pos) !== -1;
+  }
+
   Snake.prototype.move = function() {
     var nextPos = SnakeGame.Util.add(this.currentPos(), this.dir);
 
