@@ -59,6 +59,8 @@
     var snake = this.snake;
 
     $("body").keydown(function (e) {
+      e.preventDefault();
+
       if (e.keyCode == 38) {
         snake.changeDir("N");
       } else if (e.keyCode == 39) {
