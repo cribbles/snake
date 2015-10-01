@@ -33,7 +33,7 @@ ul {
 .snake-game, .snake-figure {
   display: block;
   margin: 0 auto;
-  width: 720px;
+  width: 360px;
 }
 
 .snake-row > li {

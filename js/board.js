@@ -14,7 +14,7 @@
   };
 
   Board.HEIGHT = 20;
-  Board.WIDTH = 40;
+  Board.WIDTH = 20;
 
   Board.prototype.placeApple = function () {
     var emptySpaces = this.emptySpaces();
