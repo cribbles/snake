@@ -29,7 +29,8 @@
       for (col = 0; col < this.width; col++) {
         var pos = [row, col];
 
-        if (this.applePos !== pos && !this.snake.hasSegment(pos)) {
+        if (!SnakeGame.Util.samePos(this.applePos, pos) &&
+            !this.snake.hasSegment(pos)) {
           emptySpaces.push([row, col]);
         }
       }

@@ -12,7 +12,7 @@
   }
 
   Snake.prototype.hasSegment = function (pos) {
-    return this.segments.indexOf(pos) !== -1;
+    return SnakeGame.Util.inSegments(this.segments, pos);
   }
 
   Snake.prototype.move = function() {
