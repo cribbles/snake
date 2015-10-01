@@ -31,4 +31,31 @@
       return Util.samePos(segment, pos);
     });
   }
+
+  Util.adjacentCardinalCoords = function (pos) {
+    var x = pos[0], y = pos[1];
+
+    return [[x, y-1], [x-1, y], [x+1, y], [x, y+1]];
+  }
+
+  Util.sortCoordsByCost = function (options) {
+    var nodes = {};
+    var costs = [];
+
+    options.coords.forEach(function (node) {
+      nodes[node] = Util.hCost(node, options.goal);
+      costs.push({ node: Util.hCost(node, options.goal) });
+    });
+
+    return costs;
+  }
+
+  Util.hCost = function (node, goal) {
+    var goalX = goal[0],
+        goalY = goal[1],
+        nodeX = node[0],
+        nodeY = node[1];
+
+    return (goalX - nodeX) + (goalY - nodeY);
+  }
 })();
