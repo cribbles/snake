@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Snake</title>
-    <link rel="stylesheet" href="./snake.css" type="text/css">
-    <script src="./jquery-2.1.4.js"></script>
-    <script src="./util.js"></script>
-    <script src="./snake.js"></script>
-    <script src="./board.js"></script>
-    <script src="./view.js"></script>
+    <link rel="stylesheet" href="css/snake.css" type="text/css">
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/snake.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/view.js"></script>
   </head>
   <body>
     <h1 class="snake-header">Snake!</h1>
@@ -16,7 +16,7 @@
       <h2 class="snake-score"></h2>
     </div>
     <script>
-      var el = document.getElementById("snake");
+      var el = $("#snake");
       var view = new SnakeGame.View(el);
       view.start();
     </script>

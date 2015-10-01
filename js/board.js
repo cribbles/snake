@@ -52,7 +52,6 @@
         board[row].append($li);
       }
     }
-
     return board;
   }
 
