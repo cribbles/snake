@@ -6,6 +6,7 @@
     this.$board = this.$el.find(".snake-game");
     this.board = new SnakeGame.Board(options);
     this.snake = this.board.snake;
+    this.paused = false;
 
     this.bindKeyHandlers();
   }
@@ -14,14 +15,15 @@
     this.renderBoard();
 
     var render = function () {
-      var pace = (7 + this.snake.segments.length);
-      var score = this.board.score
+      if (!this.paused) {
+        var pace = (7 + this.snake.segments.length);
+        var score = this.board.score
 
-      this.snake.move();
-      this.renderSnake();
-      this.renderApple();
-      this.$el.find(".snake-score").text("Score: " + score);
-
+        this.snake.move();
+        this.renderSnake();
+        this.renderApple();
+        this.$el.find(".snake-score").text("Score: " + score);
+      }
       if (!this.board.isOver) {
         setTimeout(render.bind(this), 1000 / pace);
       }
@@ -56,6 +58,7 @@
   }
 
   View.prototype.bindKeyHandlers = function () {
+    var view = this;
     var snake = this.snake;
 
     $("body").keydown(function (e) {
@@ -69,6 +72,8 @@
         snake.changeDir("S");
       } else if (e.keyCode == 37) {
         snake.changeDir("W");
+      } else if (e.keyCode == 32) {
+        view.paused = (view.paused ? false : true);
       }
     });
   }
