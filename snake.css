@@ -47,10 +47,12 @@ ul {
 
 .snake-row > .snake {
   background: black;
+  border-radius: 5px;
 }
 
 .snake-row > .apple {
   background: green;
+  border-radius: 5px;
 }
 
 .snake > h2 {
