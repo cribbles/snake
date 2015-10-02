@@ -61,6 +61,6 @@
   }
 
   Board.prototype.incrementScore = function () {
-    this.score += this.snake.segments.length * 5;
+    this.score += (this.snake.segments.length - 2) * 5;
   }
 })();
