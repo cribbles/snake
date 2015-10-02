@@ -25,16 +25,16 @@
 
     if (!this.safeMove(nextPos)) {
       this.board.isOver = true;
-    } else {
-      this.segments.push(nextPos);
-
-      if (!SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
-        this.segments.shift();
-      } else {
-        this.board.incrementScore();
-        this.board.placeApple();
-      }
+      return;
     }
+
+    if (SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
+      this.board.incrementScore();
+      this.board.placeApple();
+    } else {
+      this.segments.shift();
+    }
+    this.segments.push(nextPos);
   }
 
   Snake.prototype.changeDir = function(dir) {
