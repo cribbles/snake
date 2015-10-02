@@ -6,30 +6,28 @@
 
     this.height = options.height || Board.HEIGHT;
     this.width = options.width || Board.WIDTH;
-    this.player = new SnakeGame.Snake(this);
-    this.opponent = new SnakeGame.SnakeAI(this);
+    this.player = options.player || new SnakeGame.Snake(this);
+    this.opponent = options.opponent || new SnakeGame.SnakeAI(this);
     this.isOver = false;
-    this.score = 0;
 
     this.placeApple();
   };
 
-  Board.HEIGHT = 30;
-  Board.WIDTH = 30;
+  Board.HEIGHT = 24;
+  Board.WIDTH = 24;
 
   Board.prototype.placeApple = function () {
     var emptySpaces = this.emptySpaces();
+    var randomSpaceIdx = Math.floor(Math.random() * emptySpaces.length);
 
-    this.applePos = emptySpaces[Math.floor(Math.random() * emptySpaces.length)];
+    this.applePos = emptySpaces[randomSpaceIdx];
   };
 
   Board.prototype.emptySpaces = function () {
     var emptySpaces = [];
-
     for (row = 0; row < this.height; row++) {
       for (col = 0; col < this.width; col++) {
         var pos = [row, col];
-
         var segments = this.player.segments.concat(this.opponent.segments);
 
         if (!SnakeGame.Util.samePos(this.applePos, pos) &&
@@ -38,7 +36,6 @@
         }
       }
     }
-
     return emptySpaces;
   }
 
@@ -61,9 +58,5 @@
   Board.prototype.inRange = function (pos) {
     return (pos[0] >= 0 && pos[0] < this.height) &&
            (pos[1] >= 0 && pos[1] < this.width);
-  }
-
-  Board.prototype.incrementScore = function () {
-    this.score += (this.player.segments.length - 2) * 5;
   }
 })();

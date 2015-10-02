@@ -27,7 +27,7 @@
       this.opponent.move();
       this.renderSnakes();
       this.renderApple();
-      this.$el.find(".snake-score").text("Score: " + this.board.score);
+      this.$el.find(".snake-score").text("Score: " + this.player.score);
     }
     if (!this.board.isOver) {
       setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);

@@ -2,8 +2,9 @@
   window.SnakeGame = window.SnakeGame || {};
 
   var SnakeAI = SnakeGame.SnakeAI = function (board) {
+    this.score = 0;
     this.tagName = "opponent";
-    this.segments = [[26, 26], [26, 25], [25, 25]];
+    this.segments = [[20, 20], [20, 19], [19, 19]];
     this.board = board;
   }
 
@@ -30,13 +31,11 @@
 
   SnakeAI.prototype.move = function() {
     var nextPos = this.nextPos();
-    if (!nextPos) {
-      this.board.isOver();
-    }
+    if (!nextPos) { this.board.isOver(); }
     this.segments.push(nextPos);
 
     if (SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
-      this.board.incrementScore();
+      this.incrementScore();
       this.board.placeApple();
     } else {
       this.segments.shift();
@@ -49,4 +48,9 @@
     return this.board.inRange(pos) &&
       !SnakeGame.Util.inSegments(segments, pos);
   }
+
+  SnakeAI.prototype.incrementScore = function () {
+    this.score += (this.segments.length - 2) * 5;
+  }
+
 })();

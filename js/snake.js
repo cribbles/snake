@@ -2,6 +2,7 @@
   window.SnakeGame = window.SnakeGame || {};
 
   var Snake = SnakeGame.Snake = function (board) {
+    this.score = 0;
     this.dir = "S";
     this.tagName = "snake";
     this.segments = [[4, 4], [4, 5], [5, 5]];
@@ -26,7 +27,7 @@
     }
 
     if (SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
-      this.board.incrementScore();
+      this.incrementScore();
       this.board.placeApple();
     } else {
       this.segments.shift();
@@ -46,4 +47,9 @@
     return this.board.inRange(pos) &&
       !SnakeGame.Util.inSegments(segments, pos);
   }
+
+  Snake.prototype.incrementScore = function () {
+    this.score += (this.segments.length - 2) * 5;
+  }
+
 })();
