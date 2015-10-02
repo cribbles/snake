@@ -12,7 +12,7 @@ body, html, div, figure, ul, li {
 body {
   font-family: sans-serif;
   color: black;
-  background: #eee;
+  background: #fafafa;
 }
 
 ul {
@@ -36,12 +36,16 @@ ul {
   width: 360px;
 }
 
+.snake-game {
+  border: 3px solid #333;
+}
+
 .snake-row > li {
   display: block;
   float: left;
   height: 16px;
   width: 16px;
-  background: #ccc;
+  background: #ddd;
   border: 1px solid #eee;
 }
 
