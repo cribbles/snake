@@ -2,6 +2,10 @@
   window.SnakeGame = window.SnakeGame || {};
 
   var Snake = SnakeGame.Snake = function (board) {
+<<<<<<< HEAD
+=======
+    this.score = 0;
+>>>>>>> gh-pages
     this.dir = "S";
     this.tagName = "snake";
     this.segments = [[4, 4], [4, 5], [5, 5]];
@@ -17,10 +21,13 @@
     return SnakeGame.Util.add(this.currentPos(), dir);
   }
 
+<<<<<<< HEAD
   Snake.prototype.hasSegment = function (pos) {
     return SnakeGame.Util.inSegments(this.segments, pos);
   }
 
+=======
+>>>>>>> gh-pages
   Snake.prototype.move = function() {
     var nextPos = this.nextPos();
 
@@ -30,7 +37,11 @@
     }
 
     if (SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
+<<<<<<< HEAD
       this.board.incrementScore();
+=======
+      this.incrementScore();
+>>>>>>> gh-pages
       this.board.placeApple();
     } else {
       this.segments.shift();
@@ -46,7 +57,19 @@
   }
 
   Snake.prototype.safeMove = function(pos) {
+<<<<<<< HEAD
     return this.board.inRange(pos) &&
       !SnakeGame.Util.inSegments(this.segments, pos);
   }
+=======
+    var segments = this.segments.concat(this.board.opponent.segments);
+    return this.board.inRange(pos) &&
+      !SnakeGame.Util.inSegments(segments, pos);
+  }
+
+  Snake.prototype.incrementScore = function () {
+    this.score += (this.segments.length - 2) * 5;
+  }
+
+>>>>>>> gh-pages
 })();

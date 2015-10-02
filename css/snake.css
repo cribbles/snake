@@ -12,7 +12,11 @@ body, html, div, figure, ul, li {
 body {
   font-family: sans-serif;
   color: black;
+<<<<<<< HEAD
   background: #fafafa;
+=======
+  background: #ddd;
+>>>>>>> gh-pages
 }
 
 ul {
@@ -33,7 +37,11 @@ ul {
 .snake-game, .snake-figure {
   display: block;
   margin: 0 auto;
+<<<<<<< HEAD
   width: 540px;
+=======
+  width: 432px;
+>>>>>>> gh-pages
 }
 
 .snake-game {
@@ -45,8 +53,13 @@ ul {
   float: left;
   height: 16px;
   width: 16px;
+<<<<<<< HEAD
   background: #ddd;
   border: 1px solid #eee;
+=======
+  background: #eee;
+  border: 1px solid #ddd;
+>>>>>>> gh-pages
 }
 
 .snake-row > .snake {
