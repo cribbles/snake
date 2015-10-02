@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Snake</title>
+    <link rel="stylesheet" href="css/snake.css" type="text/css">
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/snake.js"></script>
+    <script src="js/snakeAI.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/view.js"></script>
+  </head>
+  <body>
+    <h1 class="snake-header">Snake!</h1>
+    <div class="snake-figure" id="snake">
+      <div class="snake-game"></div>
+      <h2 class="snake-score"></h2>
+    </div>
+    <script>
+      var el = $("#snake");
+      var view = new SnakeGame.View(el);
+      view.start();
+    </script>
+  </body>
+</html>

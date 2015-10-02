@@ -1,0 +1,76 @@
+body, html, div, figure, ul, li {
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+
+  font: inherit;
+  text-align: center;
+  text-decoration: inherit;
+  background: transparent;
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+  background: #fafafa;
+}
+
+ul {
+  list-style: none;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.snake-header {
+  font-size: 56px;
+  margin: 30px auto;
+}
+
+.snake-game, .snake-figure {
+  display: block;
+  margin: 0 auto;
+  width: 540px;
+}
+
+.snake-game {
+  border: 3px solid #333;
+}
+
+.snake-row > li {
+  display: block;
+  float: left;
+  height: 16px;
+  width: 16px;
+  background: #ddd;
+  border: 1px solid #eee;
+}
+
+.snake-row > .snake {
+  background: green;
+  border-radius: 5px;
+}
+
+.snake-row > .opponent {
+  background: #333;
+  border-radius: 5px;
+}
+
+.snake-row > .apple {
+  background: darkred;
+  border-radius: 5px;
+}
+
+.snake > h2 {
+  font-size: 24px;
+  margin: 20px auto;
+}
+
+.snake > pre {
+  font-size: 14px;
+  font-family: monospace;
+  margin: 0 auto;
+}
