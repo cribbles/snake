@@ -3,6 +3,7 @@
 
   var Snake = SnakeGame.Snake = function (board) {
     this.dir = "S";
+    this.tagName = "snake";
     this.segments = [[4, 4], [4, 5], [5, 5]];
     this.board = board;
   }

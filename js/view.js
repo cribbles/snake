@@ -5,8 +5,10 @@
     this.$el = $(el);
     this.$board = this.$el.find(".snake-game");
     this.board = new SnakeGame.Board(options);
-    this.snake = this.board.snake;
+    this.player = this.board.player;
+    this.opponent = this.board.opponent;
     this.paused = false;
+    this.pace = 10;
 
     this.bindKeyHandlers();
   }
@@ -14,39 +16,46 @@
   View.prototype.start = function () {
     this.renderBoard();
 
-    var render = function () {
-      if (!this.paused) {
-        var pace = (7 + this.snake.segments.length);
-        var score = this.board.score
+    setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);
+  }
 
-        this.snake.move();
-        this.renderSnake();
-        this.renderApple();
-        this.$el.find(".snake-score").text("Score: " + score);
-      }
-      if (!this.board.isOver) {
-        setTimeout(render.bind(this), 1000 / pace);
-      }
+  View.prototype.moveSnakes = function () {
+    if (!this.paused) {
+      this.pace = (7 + this.player.segments.length);
+
+      this.player.move();
+      this.opponent.move();
+      this.renderSnakes();
+      this.renderApple();
+      this.$el.find(".snake-score").text("Score: " + this.board.score);
     }
-    setTimeout(render.bind(this), 1000 / 10);
+    if (!this.board.isOver) {
+      setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);
+    }
   }
 
   View.prototype.renderBoard = function () {
+    var view = this;
     var board = this.board.render();
 
     board.forEach(function (row) {
-      this.$board.append(row);
-    }, this);
+      view.$board.append(row);
+    });
   }
 
-  View.prototype.renderSnake = function () {
-    this.$board.find("li").removeClass("snake");
+  View.prototype.renderSnakes = function () {
+    this.renderSnakeSegments(this.player);
+    this.renderSnakeSegments(this.opponent);
+  }
 
-    this.snake.segments.forEach(function (pos) {
+  View.prototype.renderSnakeSegments = function (snake) {
+    this.$board.find("li").removeClass(snake.tagName);
+    var $board = this.$board;
+
+    snake.segments.forEach(function (pos) {
       var id = "#" + pos[0] + "-" + pos[1];
-
-      this.$board.find(id).addClass("snake");
-    }, this);
+      $board.find(id).addClass(snake.tagName);
+    });
   }
 
   View.prototype.renderApple = function () {
@@ -59,19 +68,19 @@
 
   View.prototype.bindKeyHandlers = function () {
     var view = this;
-    var snake = this.snake;
+    var player = this.player;
 
     $("body").keydown(function (e) {
       e.preventDefault();
 
       if (e.keyCode == 38) {
-        snake.changeDir("N");
+        player.changeDir("N");
       } else if (e.keyCode == 39) {
-        snake.changeDir("E");
+        player.changeDir("E");
       } else if (e.keyCode == 40) {
-        snake.changeDir("S");
+        player.changeDir("S");
       } else if (e.keyCode == 37) {
-        snake.changeDir("W");
+        player.changeDir("W");
       } else if (e.keyCode == 32) {
         view.paused = (view.paused ? false : true);
       }

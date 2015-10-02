@@ -2,7 +2,8 @@
   window.SnakeGame = window.SnakeGame || {};
 
   var SnakeAI = SnakeGame.SnakeAI = function (board) {
-    this.segments = [[4, 4], [4, 5], [5, 5]];
+    this.tagName = "opponent";
+    this.segments = [[26, 26], [26, 25], [25, 25]];
     this.board = board;
   }
 

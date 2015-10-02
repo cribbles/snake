@@ -6,15 +6,16 @@
 
     this.height = options.height || Board.HEIGHT;
     this.width = options.width || Board.WIDTH;
-    this.snake = options.snake || new SnakeGame.SnakeAI(this);
+    this.player = new SnakeGame.Snake(this);
+    this.opponent = new SnakeGame.SnakeAI(this);
     this.isOver = false;
     this.score = 0;
 
     this.placeApple();
   };
 
-  Board.HEIGHT = 20;
-  Board.WIDTH = 20;
+  Board.HEIGHT = 30;
+  Board.WIDTH = 30;
 
   Board.prototype.placeApple = function () {
     var emptySpaces = this.emptySpaces();
@@ -30,7 +31,7 @@
         var pos = [row, col];
 
         if (!SnakeGame.Util.samePos(this.applePos, pos) &&
-            !this.snake.hasSegment(pos)) {
+            !this.player.hasSegment(pos)) {
           emptySpaces.push([row, col]);
         }
       }
@@ -61,6 +62,6 @@
   }
 
   Board.prototype.incrementScore = function () {
-    this.score += (this.snake.segments.length - 2) * 5;
+    this.score += (this.player.segments.length - 2) * 5;
   }
 })();

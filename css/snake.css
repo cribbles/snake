@@ -33,7 +33,7 @@ ul {
 .snake-game, .snake-figure {
   display: block;
   margin: 0 auto;
-  width: 360px;
+  width: 540px;
 }
 
 .snake-game {
@@ -50,12 +50,17 @@ ul {
 }
 
 .snake-row > .snake {
-  background: black;
+  background: green;
+  border-radius: 5px;
+}
+
+.snake-row > .opponent {
+  background: #333;
   border-radius: 5px;
 }
 
 .snake-row > .apple {
-  background: green;
+  background: darkred;
   border-radius: 5px;
 }
 
