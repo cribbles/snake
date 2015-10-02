@@ -30,8 +30,10 @@
       for (col = 0; col < this.width; col++) {
         var pos = [row, col];
 
+        var segments = this.player.segments.concat(this.opponent.segments);
+
         if (!SnakeGame.Util.samePos(this.applePos, pos) &&
-            !this.player.hasSegment(pos)) {
+            !SnakeGame.Util.inSegments(segments, pos)) {
           emptySpaces.push([row, col]);
         }
       }

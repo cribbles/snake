@@ -17,10 +17,6 @@
     return SnakeGame.Util.add(this.currentPos(), dir);
   }
 
-  Snake.prototype.hasSegment = function (pos) {
-    return SnakeGame.Util.inSegments(this.segments, pos);
-  }
-
   Snake.prototype.move = function() {
     var nextPos = this.nextPos();
 
@@ -46,7 +42,8 @@
   }
 
   Snake.prototype.safeMove = function(pos) {
+    var segments = this.segments.concat(this.board.opponent.segments);
     return this.board.inRange(pos) &&
-      !SnakeGame.Util.inSegments(this.segments, pos);
+      !SnakeGame.Util.inSegments(segments, pos);
   }
 })();

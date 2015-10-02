@@ -11,10 +11,6 @@
     return this.segments[(this.segments.length - 1)];
   }
 
-  SnakeAI.prototype.hasSegment = function (pos) {
-    return SnakeGame.Util.inSegments(this.segments, pos);
-  }
-
   SnakeAI.prototype.nextPos = function() {
     var coords = SnakeGame.Util.adjacentCardinalCoords(this.currentPos());
 
@@ -34,6 +30,9 @@
 
   SnakeAI.prototype.move = function() {
     var nextPos = this.nextPos();
+    if (!nextPos) {
+      this.board.isOver();
+    }
     this.segments.push(nextPos);
 
     if (SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
@@ -45,7 +44,9 @@
   }
 
   SnakeAI.prototype.safeMove = function(pos) {
+    var segments = this.segments.concat(this.board.player.segments);
+
     return this.board.inRange(pos) &&
-      !SnakeGame.Util.inSegments(this.segments, pos);
+      !SnakeGame.Util.inSegments(segments, pos);
   }
 })();
