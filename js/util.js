@@ -39,15 +39,21 @@
   }
 
   Util.sortCoordsByCost = function (options) {
-    var nodes = {};
-    var costs = [];
+    nodes = [];
 
     options.coords.forEach(function (node) {
-      nodes[node] = Util.hCost(node, options.goal);
-      costs.push({ node: Util.hCost(node, options.goal) });
+      nodes.push({
+        node: node,
+        cost: Util.hCost(node, options.goal)
+      });
     });
 
-    return costs;
+    sorted = nodes.sort(function (left, right) {
+      if (left.cost <= right.cost) return -1;
+      if (left.cost > right.cost) return 1;
+    });
+
+    return sorted;
   }
 
   Util.hCost = function (node, goal) {
@@ -56,6 +62,6 @@
         nodeX = node[0],
         nodeY = node[1];
 
-    return (goalX - nodeX) + (goalY - nodeY);
+    return Math.abs(goalX - nodeX) + Math.abs(goalY - nodeY);
   }
 })();

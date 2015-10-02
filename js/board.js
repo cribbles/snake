@@ -6,7 +6,7 @@
 
     this.height = options.height || Board.HEIGHT;
     this.width = options.width || Board.WIDTH;
-    this.snake = options.snake || new SnakeGame.Snake(this);
+    this.snake = options.snake || new SnakeGame.SnakeAI(this);
     this.isOver = false;
     this.score = 0;
 
