@@ -81,7 +81,13 @@
       } else if (e.keyCode == 37) {
         player.changeDir("W");
       } else if (e.keyCode == 32) {
-        view.paused = (view.paused ? false : true);
+        if (view.paused) {
+          view.paused = false;
+          view.$el.find(".snake-splash").hide();
+        } else {
+          view.paused = true;
+          view.$el.find(".snake-splash").show();
+        }
       }
     });
   }
