@@ -31,18 +31,37 @@ ul {
   margin: 30px auto;
 }
 
-.snake-game, .snake-figure {
+.snake-figure, .snake-game, .snake-splash {
   display: block;
   margin: 0 auto;
   width: 432px;
+  height: 432px;
+}
+
+.snake-game, .snake-figure {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.snake-splash {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background: rgba(160, 180, 160, 0.65);
 }
 
 .snake-game {
   border: 3px solid #333;
 }
 
+.snake-row {
+  position: relative;
+}
+
 .snake-row > li {
   display: block;
+  position: relative;
   float: left;
   height: 16px;
   width: 16px;
@@ -66,6 +85,11 @@ ul {
 }
 
 h2 {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   font-size: 24px;
   font-weight: 700;
   margin: 20px auto;
