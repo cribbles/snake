@@ -6,7 +6,7 @@
     this.$board = this.$el.find(".snake-game");
     this.$splash = this.$el.find(".snake-splash");
     this.paused = false;
-    this.pace = 10;
+    this.endGame = false;
 
     this.$el.on("click", "button", this.start.bind(this));
   }
@@ -21,30 +21,33 @@
   View.prototype.start = function (e) {
     e && e.preventDefault();
 
-    this.$splash.hide().find("span").empty();
+    this.endGame = false;
     this.board = new SnakeGame.Board();
     this.player = this.board.player;
     this.opponent = this.board.opponent;
 
     this.renderBoard();
     this.bindKeyHandlers();
-    setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);
+    this.$splash.hide().find("span").empty();
+    setTimeout(this.moveSnakes.bind(this), this.pace());
   }
 
   View.prototype.moveSnakes = function () {
     if (!this.paused) {
-      this.pace = (7 + this.player.segments.length);
-      this.player.move();
-      this.opponent.move();
-      this.renderSnakes();
+      this.moveSnake(this.player);
+      this.moveSnake(this.opponent);
       this.renderApple();
       this.$el.find(".snake-score").text("Score: " + this.player.score);
     }
     if (this.board.isOver()) {
       this.gameOver();
     } else {
-      setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);
+      setTimeout(this.moveSnakes.bind(this), this.pace());
     }
+  }
+
+  View.prototype.pace = function () {
+    return 1000 / (7 + this.player.segments.length);
   }
 
   View.prototype.renderBoard = function () {
@@ -57,9 +60,9 @@
     });
   }
 
-  View.prototype.renderSnakes = function () {
-    this.renderSnakeSegments(this.player);
-    this.renderSnakeSegments(this.opponent);
+  View.prototype.moveSnake = function (snake) {
+    snake.move();
+    this.renderSnakeSegments(snake);
   }
 
   View.prototype.renderSnakeSegments = function (snake) {
@@ -81,33 +84,12 @@
   }
 
   View.prototype.bindKeyHandlers = function () {
-    var view = this;
-    var player = this.player;
-
     $("body").off("keydown");
-    $("body").on("keydown", function (e) {
-      e.preventDefault();
-
-      View.DIRECTIONS.forEach(function (dir) {
-        if (e.keyCode == dir[0]) {
-          player.changeDir(dir[1]);
-        }
-      });
-
-      if (e.keyCode == 32) {
-        if (view.board.isOver()) { return; }
-        if (view.paused) {
-          view.paused = false;
-          view.$splash.hide();
-        } else {
-          view.paused = true;
-          view.$splash.show();
-        }
-      }
-    });
+    $("body").on("keydown", this._onKeydown.bind(this));
   }
 
   View.prototype.gameOver = function () {
+    this.endGame = true;
     var $splash = this.$splash.show().find("span");
     var playerWon = (this.board.winner == this.player);
     var status = (playerWon ? "You win!" : "Game over!");
@@ -115,5 +97,37 @@
     var $button = $("<button>").text("Play Again");
 
     $splash.append($h2, $button);
+    this._endGame();
   }
+
+  View.prototype._endGame = function () {
+    this.moveSnake(this.opponent);
+    this.renderApple();
+    if (this.endGame && !this.opponent.isDead) {
+      setTimeout(this._endGame.bind(this), this.pace());
+    }
+  }
+
+  View.prototype._onKeydown = function (e) {
+    e.preventDefault();
+    var view = this;
+
+    View.DIRECTIONS.forEach(function (dir) {
+      if (e.keyCode == dir[0]) {
+        view.player.changeDir(dir[1]);
+      }
+    });
+
+    if (e.keyCode == 32) {
+      if (view.board.isOver()) { return; }
+      if (view.paused) {
+        view.paused = false;
+        view.$splash.hide();
+      } else {
+        view.paused = true;
+        view.$splash.show();
+      }
+    }
+  }
+
 })();
