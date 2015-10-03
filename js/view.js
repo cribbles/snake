@@ -19,7 +19,7 @@
   ];
 
   View.prototype.start = function (e) {
-    e.preventDefault();
+    e && e.preventDefault();
 
     this.$splash.hide().find("span").empty();
     this.board = new SnakeGame.Board();
