@@ -48,7 +48,7 @@ ul {
   display: none;
   position: absolute;
   z-index: 1;
-  background: rgba(160, 180, 160, 0.65);
+  background: rgba(180, 160, 160, 0.65);
 }
 
 .snake-game {

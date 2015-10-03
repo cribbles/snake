@@ -13,6 +13,13 @@
     this.bindKeyHandlers();
   }
 
+  View.DIRECTIONS = [
+    [38, "N"],
+    [39, "E"],
+    [40, "S"],
+    [37, "W"]
+  ];
+
   View.prototype.start = function () {
     this.renderBoard();
     setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);
@@ -72,15 +79,14 @@
     $("body").keydown(function (e) {
       e.preventDefault();
 
-      if (e.keyCode == 38) {
-        player.changeDir("N");
-      } else if (e.keyCode == 39) {
-        player.changeDir("E");
-      } else if (e.keyCode == 40) {
-        player.changeDir("S");
-      } else if (e.keyCode == 37) {
-        player.changeDir("W");
-      } else if (e.keyCode == 32) {
+      View.DIRECTIONS.forEach(function (dir) {
+        if (e.keyCode == dir[0]) {
+          player.changeDir(dir[1]);
+        }
+      });
+
+      if (e.keyCode == 32) {
+        if (view.board.isOver) { return; }
         if (view.paused) {
           view.paused = false;
           view.$el.find(".snake-splash").hide();
