@@ -15,7 +15,6 @@
 
   View.prototype.start = function () {
     this.renderBoard();
-
     setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);
   }
 
@@ -27,11 +26,7 @@
       this.opponent.move();
       this.renderSnakes();
       this.renderApple();
-<<<<<<< HEAD
-      this.$el.find(".snake-score").text("Score: " + this.board.score);
-=======
       this.$el.find(".snake-score").text("Score: " + this.player.score);
->>>>>>> gh-pages
     }
     if (!this.board.isOver) {
       setTimeout(this.moveSnakes.bind(this), 1000 / this.pace);

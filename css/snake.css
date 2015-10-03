@@ -1,4 +1,5 @@
-body, html, div, figure, ul, li {
+body, html, div, figure, ul, li,
+h2, pre, footer, span, a, img {
   margin: 0 auto;
   padding: 0;
   border: 0;
@@ -10,13 +11,9 @@ body, html, div, figure, ul, li {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: black;
-<<<<<<< HEAD
-  background: #fafafa;
-=======
   background: #ddd;
->>>>>>> gh-pages
 }
 
 ul {
@@ -37,11 +34,7 @@ ul {
 .snake-game, .snake-figure {
   display: block;
   margin: 0 auto;
-<<<<<<< HEAD
-  width: 540px;
-=======
   width: 432px;
->>>>>>> gh-pages
 }
 
 .snake-game {
@@ -53,13 +46,8 @@ ul {
   float: left;
   height: 16px;
   width: 16px;
-<<<<<<< HEAD
-  background: #ddd;
-  border: 1px solid #eee;
-=======
   background: #eee;
   border: 1px solid #ddd;
->>>>>>> gh-pages
 }
 
 .snake-row > .snake {
@@ -77,8 +65,9 @@ ul {
   border-radius: 5px;
 }
 
-.snake > h2 {
+h2 {
   font-size: 24px;
+  font-weight: 700;
   margin: 20px auto;
 }
 
@@ -86,4 +75,41 @@ ul {
   font-size: 14px;
   font-family: monospace;
   margin: 0 auto;
+}
+
+footer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+footer:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+footer > span {
+  display: block;
+  float: left;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 8px;
+  line-height: 20px;
+}
+
+footer > span > a {
+  color: #059;
+  text-decoration: none;
+}
+
+footer > span > a:hover {
+  text-decoation: underline;
+}
+
+footer > a > img {
+  width: 20px;
+  height: 20px;
+  margin: 10px 10px 10px 0;
 }
