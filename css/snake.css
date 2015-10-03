@@ -1,5 +1,6 @@
 body, html, div, figure, ul, li,
-h2, pre, footer, span, a, img {
+h2, pre, footer, span, a, img, h3,
+button {
   margin: 0 auto;
   padding: 0;
   border: 0;
@@ -48,7 +49,39 @@ ul {
   display: none;
   position: absolute;
   z-index: 1;
-  background: rgba(180, 160, 160, 0.65);
+  background: rgba(180, 195, 210, 0.75)
+}
+
+.snake-splash > span {
+  display: block;
+  position: relative;
+  top: 125px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+button {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 5px;
+  background: #090;
+  color: #eaeaea;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0a0;
+}
+
+button:active {
+  background: #080;
+}
+
+button:focus {
+  outline: 0;
 }
 
 .snake-game {
@@ -84,12 +117,15 @@ ul {
   border-radius: 5px;
 }
 
-h2 {
+.snake-figure > h2 {
   display: block;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
+}
+
+h2 {
   font-size: 24px;
   font-weight: 700;
   margin: 20px auto;
