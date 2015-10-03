@@ -13,16 +13,16 @@
     return this.segments[(this.segments.length - 1)];
   }
 
-  Snake.prototype.nextPos = function(dir) {
+  Snake.prototype.nextPos = function (dir) {
     dir = dir || this.dir;
     return SnakeGame.Util.add(this.currentPos(), dir);
   }
 
-  Snake.prototype.move = function() {
+  Snake.prototype.move = function () {
     var nextPos = this.nextPos();
 
     if (!this.safeMove(nextPos)) {
-      this.board.isOver = true;
+      this.isDead = true;
       return;
     }
 
@@ -35,14 +35,14 @@
     this.segments.push(nextPos);
   }
 
-  Snake.prototype.changeDir = function(dir) {
+  Snake.prototype.changeDir = function (dir) {
     if (!SnakeGame.Util.DIRECTIONS[dir]) { return; }
     if (this.safeMove(this.nextPos(dir))) {
       this.dir = dir;
     }
   }
 
-  Snake.prototype.safeMove = function(pos) {
+  Snake.prototype.safeMove = function (pos) {
     var segments = this.segments.concat(this.board.opponent.segments);
     return this.board.inRange(pos) &&
       !SnakeGame.Util.inSegments(segments, pos);

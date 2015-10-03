@@ -8,7 +8,6 @@
     this.width = options.width || Board.WIDTH;
     this.player = options.player || new SnakeGame.Snake(this);
     this.opponent = options.opponent || new SnakeGame.SnakeAI(this);
-    this.isOver = false;
 
     this.placeApple();
   };
@@ -60,4 +59,17 @@
     return (pos[0] >= 0 && pos[0] < this.height) &&
            (pos[1] >= 0 && pos[1] < this.width);
   }
+
+  Board.prototype.winner = function () {
+    if (this.player.isDead) {
+      return this.opponent;
+    } else if (this.opponent.isDead) {
+      return this.player;
+    }
+  }
+
+  Board.prototype.isOver = function () {
+    return !!this.winner();
+  }
+
 })();

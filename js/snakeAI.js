@@ -30,7 +30,10 @@
 
   SnakeAI.prototype.move = function() {
     var nextPos = this.nextPos();
-    if (!nextPos) { this.board.isOver(); }
+    if (!nextPos) {
+      this.isDead = true;
+      return;
+    }
     this.segments.push(nextPos);
 
     if (SnakeGame.Util.samePos(nextPos, this.board.applePos)) {
