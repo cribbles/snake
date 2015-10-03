@@ -25,7 +25,9 @@
       goal: this.board.applePos
     });
 
-    return costs[0].node;
+    if (costs[0]) {
+      return costs[0].node;
+    }
   }
 
   SnakeAI.prototype.move = function() {

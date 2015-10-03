@@ -8,7 +8,7 @@
     this.paused = false;
     this.pace = 10;
 
-    this.$el.on("click button", this.start.bind(this));
+    this.$el.on("click", "button", this.start.bind(this));
   }
 
   View.DIRECTIONS = [
@@ -18,7 +18,9 @@
     [37, "W"]
   ];
 
-  View.prototype.start = function () {
+  View.prototype.start = function (e) {
+    e.preventDefault();
+
     this.$splash.hide().find("span").empty();
     this.board = new SnakeGame.Board();
     this.player = this.board.player;
