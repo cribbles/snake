@@ -1,5 +1,7 @@
 # Snake.js
 
+[Live](http://chrissloop.com/snake)
+
 ## Summary
 
 This is a remake of the classic Snake arcade game using JavaScript, jQuery and
